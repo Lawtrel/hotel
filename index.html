@@ -1,53 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleIndex.css">
-    <title>Tela 1</title>
+    <title>Hotel</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header class="header">
+
+    <!-- Cabeçalho -->
+    <header>
         <img class="logo" src="img/logo.png.png" alt="Logotipo">
+        <h1>Hotel Mandakaru </h1>
+        
         <nav class="user-nav">
             <a href="tela2-1.html" class="login-btn">Entrar</a>
         </nav>
     </header>
 
-    <main class="main-content">
-        <section class="form-section">
-            <form class="travel-form">
-                <label for="destination">Para aonde vai?</label>
-                <input type="text" id="destination" name="destination" placeholder="Digite o destino" required>
+    <!-- Formulário de Reservas -->
+    <section id="reservas">
+        <h2>Faça sua Reserva Online</h2>
+        <form id="bookingForm">
+            <label for="name">Nome Completo:</label>
+            <input type="text" id="name" required>
 
-                <label for="dates">Quando vai/volta?</label>
-                <input type="date" id="dates" name="dates" required>
+            <label for="checkin">Data de Check-in:</label>
+            <input type="date" id="checkin" required>
 
-                <label for="people">Quantas pessoas?</label>
-                <input type="number" id="people" name="people" min="1" required>
+            <label for="checkout">Data de Check-out:</label>
+            <input type="date" id="checkout" required>
 
-                <button type="submit" class="submit-btn">Enviar</button>
-            </form>
-        </section>
+            <label for="guests">Número de Hóspedes:</label>
+            <input type="number" id="guests" min="1" required>
 
-        <section class="recommendations">
-            <h2>Nossas recomendações</h2>
-            <article class="recommendation-item">
-                <img src="img/cultura.svg" alt="Cultura">
-                <p>Cultura</p>
-            </article>
-            <article class="recommendation-item">
-                <img src="img/eventos.svg" alt="Eventos">
-                <p>Eventos</p>
-            </article>
-        </section>
-    </main>
+            <button type="submit">Reservar Agora</button>
+        </form>
+        <p id="message"></p>
+    </section>
 
-    <footer class="footer">
-        <p>Todos os direitos reservados - 2024</p>
-    </footer>
+    <!-- Galeria de Fotos -->
+    <section id="galeria">
+        <h2>Galeria de Fotos</h2>
+        <div class="gallery">
+            <img src="img/img1.jpg" alt="Imagem 1">
+            <img src="img/img2.jpg" alt="Imagem 2">
+            <img src="img/img3.jpg" alt="Imagem 3">
+            <img src="img/img4.jpeg" alt="Imagem 4">
+        </div>
+    </section>
+
+    <!-- Mapa de Localização -->
+    <section id="localizacao">
+        <h2>Nos Encontre Aqui</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Testemunhos e Avaliações -->
+    <section id="testemunhos">
+        <h2>O que nossos hóspedes dizem</h2>
+        <div class="testimonial">
+            <p>"Tive uma estadia maravilhosa! O atendimento foi excelente."</p>
+            <span>- Maria Silva</span>
+        </div>
+        <div class="testimonial">
+            <p>"Um hotel incrível! Voltarei com certeza."</p>
+            <span>- João Pereira</span>
+        </div>
+        <div class="testimonial">
+            <p>"Localização perfeita e ótimas acomodações."</p>
+            <span>- Ana Costa</span>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrQIN7U04g0LDJU5fJS1VnKqohqRAf7tw&callback=initMap"></script>
 </body>
-
 </html>

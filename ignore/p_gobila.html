@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleIndex.css">
+    <title>Tela 1</title>
+</head>
+
+<body>
+    <header class="header">
+        <img class="logo" src="img/logo.png.png" alt="Logotipo">
+        <nav class="user-nav">
+            <a href="tela2-1.html" class="login-btn">Entrar</a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="form-section">
+            <form class="travel-form">
+                <label for="destination">Para aonde vai?</label>
+                <input type="text" id="destination" name="destination" placeholder="Digite o destino" required>
+
+                <label for="dates">Quando vai/volta?</label>
+                <input type="date" id="dates" name="dates" required>
+
+                <label for="people">Quantas pessoas?</label>
+                <input type="number" id="people" name="people" min="1" required>
+
+                <button type="submit" class="submit-btn">Enviar</button>
+            </form>
+        </section>
+
+        <section class="recommendations">
+            <h2>Nossas recomendações</h2>
+            <article class="recommendation-item">
+                <img src="img/cultura.svg" alt="Cultura">
+                <p>Cultura</p>
+            </article>
+            <article class="recommendation-item">
+                <img src="img/eventos.svg" alt="Eventos">
+                <p>Eventos</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Todos os direitos reservados - 2024</p>
+    </footer>
+</body>
+
+</html>
