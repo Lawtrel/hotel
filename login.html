@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    document.getElementById("bookingForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    // Checa se o usuário está autenticado
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("Você precisa estar logado para fazer a reserva.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    // Pegando os valores dos campos
+    const name = document.getElementById("name").value;
+    const checkInDate = document.getElementById("checkin").value; // Renomeado para checkInDate
+    const checkOutDate = document.getElementById("checkout").value; // Renomeado para checkOutDate
+    const guests = parseInt(document.getElementById("guests").value, 10); // Convertendo para número
+
+    // Dados para enviar para a API
+    const reservationData = {
+        name: name, // Renomeado para name
+        checkInDate: checkInDate, // Renomeado para checkInDate
+        checkOutDate: checkOutDate, // Renomeado para checkOutDate
+        guests: guests // Renomeado para guests
+    };
+
+    // Enviando a reserva para a API
+    fetch('https://127.0.0.1/api/reservar', {  // Substitua pela URL da API de reservas
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Inclui o token de autenticação, se necessário
+        },
+        body: JSON.stringify(reservationData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Exibir mensagem de sucesso ou erro com base na resposta da API
+        if (data.success) {
+            document.getElementById("message").textContent = `Reserva confirmada para ${name}.`;
+        } else {
+            document.getElementById("message").textContent = 'Erro ao fazer a reserva. Tente novamente.';
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao enviar reserva:', error);
+        document.getElementById("message").textContent = 'Erro ao fazer a reserva. Tente novamente.';
+    });
+});
+
+    </script>
+</body>
+</html>

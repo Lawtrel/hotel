@@ -1,0 +1,53 @@
+/* Estilos da Tela 2.2 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #95f3fa;
+    padding: 20px;
+}
+
+.logo{
+    width: 70px;
+    height: auto;
+}
+
+.header h1 {
+    margin-left: 15px;
+    font-size: 26px;
+}
+
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 100px);
+}
+
+.signup-section {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.signup-form input {
+    padding: 10px;
+    border: 1.5px solid #00000080;
+    border-radius: 12px;
+}
+
+.signup-btn {
+    background-color: #20a0af;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+}
