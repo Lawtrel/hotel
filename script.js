@@ -1,41 +1,49 @@
-document.getElementById("bookingForm").addEventListener("submit", function(event) {
+document.getElementById("bookingForm").addEventListener("submit", async function(event) {
     event.preventDefault();
+    //Checa se usuario esta autenticado.
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("Voce precisa estar logado para fazer a reservar.");
+        window.location.href = "login.html";
+        return;
+    }
 
     // Pegando os valores dos campos
     const name = document.getElementById("name").value;
-    const checkin = document.getElementById("checkin").value;
-    const checkout = document.getElementById("checkout").value;
+    const checkInDate  = document.getElementById("checkin").value;
+    const checkOutDate  = document.getElementById("checkout").value;
     const guests = document.getElementById("guests").value;
 
     // Dados para enviar para a API
     const reservationData = {
-        nome: name,
-        data_checkin: checkin,
-        data_checkout: checkout,
-        numero_hospedes: guests
+        name: name,
+        checkInDate : checkInDate,
+        checkOutDate: checkOutDate,
+        guests: guests
     };
 
     // Enviando a reserva para a API
-    fetch('https://127.0.0.1/api/reservar', {  // Substitua pela URL da API de reservas
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reservationData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Exibir mensagem de sucesso ou erro com base na resposta da API
-        if (data.success) {
-            document.getElementById("message").textContent = `Reserva confirmada para ${name}.`;
-        } else {
-            document.getElementById("message").textContent = 'Erro ao fazer a reserva';
+   try {
+        const response = await fetch('https://127.0.0.1:5000/api/reservar', {  // Substitua pela URL da API de reservas
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': token
+            },
+            body: JSON.stringify(reservationData)
+        });
+
+        const data = await response.json();
+            // Exibir mensagem de sucesso ou erro com base na resposta da API
+            if (response.ok) {
+                document.getElementById("message").textContent = `Reserva confirmada para ${name}.`;
+            } else {
+                document.getElementById("message").textContent = data.message || 'Erro ao fazer a reserva. Tente novamente.';
+            }
+        } catch(error) {
+            console.error('Erro ao enviar reserva:', error);
+            document.getElementById("message").textContent = 'Erro ao fazer a reserva. Tente novamente.';
         }
-    })
-    .catch(error => {
-        console.error('Erro ao enviar reserva:', error);
-        document.getElementById("message").textContent = 'ERRO ao fazer a reserva. Tente novamente.';
-    });
 });
 
 // Google Maps - Mapa de Localização

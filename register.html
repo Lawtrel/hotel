@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/registerStyle.css">
+    <title>Registro - Hotel Mandacaru</title>
+</head>
+
+<body>
+    <header class="header">
+        <img class="logo" src="img/logo.png" alt="Logotipo">
+        <h1>Hotel Mandacaru</h1>
+    </header>
+
+    <main class="main-content">
+        <section class="signup-section">
+            <h2>Crie sua Conta</h2>
+            <form class="signup-form" onsubmit="return registerUser(event)">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="confirm-password">Confirme a senha</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+
+                <button type="submit" class="signup-btn">Cadastrar</button>
+            </form>
+        </section>
+    </main>
+     <!--- Script validar formulario --->
+    <script>
+        async function registerUser(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                alert("As senhas não são iguais!");
+                return false;
+            }
+            try {
+                const response = await fetch('http://localhost:5000/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password})
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    window.location.href = "index.html";
+                } else {
+                    alert(data.message || "Erro ao criar conta");
+                }
+            } catch (error) {
+                console.error("Erro:", error);
+                alert("Erro ao conectar com o servidor.");
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
