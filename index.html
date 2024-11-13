@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/indexStyle.css">
 </head>
 <body>
 
     <!-- Cabeçalho -->
     <header>
-        <img class="logo" src="img/logo.png.png" alt="Logotipo">
-        <h1>Hotel Mandakaru </h1>
-        
-        <nav class="user-nav">
-            <a href="tela2-1.html" class="login-btn">Entrar</a>
-        </nav>
+        <img class="logo" src="img/logo.png" alt="Logotipo">
+        <h1>Hotel Mandacaru</h1>
+        <p>Bem-vindo ao melhor hotel da cidade!</p>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Registar</a>
     </header>
+
+    <!--Imagem estatica-->
+    <div id="imagem-estatica">
+        <img src="img/imgMandacaru2.jpg" alt="Imagem Estática" />
+    </div>
 
     <!-- Formulário de Reservas -->
     <section id="reservas">
-        <h2>Faça sua Reserva Online</h2>
+        <h2 id="preform">Faça sua Reserva Online</h2>
         <form id="bookingForm">
             <label for="name">Nome Completo:</label>
             <input type="text" id="name" required>
@@ -40,13 +44,13 @@
     </section>
 
     <!-- Galeria de Fotos -->
-    <section id="galeria">
-        <h2>Galeria de Fotos</h2>
-        <div class="gallery">
-            <img src="img/img1.jpg" alt="Imagem 1">
-            <img src="img/img2.jpg" alt="Imagem 2">
-            <img src="img/img3.jpg" alt="Imagem 3">
-            <img src="img/img4.jpeg" alt="Imagem 4">
+    <section id="recomendation">
+        <h2>Recomendações</h2>
+        <div class="recomendacao">
+            <img src="img/cultura.jpg" alt="culture">
+            <p>Cultura</p>
+            <img src="img/evento.png" alt="event">
+            <p>Eventos</p>
         </div>
     </section>
 
