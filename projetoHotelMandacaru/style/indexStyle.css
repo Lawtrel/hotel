@@ -1,0 +1,160 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.logo{
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #4A90E2;
+}
+
+.register-btn {
+    background-color: #20a0af;
+    padding: 10px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+header {
+    background-color: #95f3fa;
+    color: black;
+    text-align: center;
+    padding: 2rem;
+    z-index: 1;
+}
+
+h1 {
+    margin: 0;
+}
+
+#imagem-estatica {
+    position: sticky;
+    top: 100px; /* Ajuste conforme a altura do header */
+    width: 100%;
+    height: 200px;
+    text-align: center; 
+    z-index: 1;
+    background-color: #ffffff;
+}
+
+#imagem-estatica img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#reservas, #recomendation, #localizacao, #testemunhos {
+    position: relative;
+    z-index: 2;
+    margin-top: 100px; /* Ajuste conforme a altura da imagem estática */
+}
+
+body {
+    background-color: #ffffff;
+}
+
+#reservas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+#recomendation, #localizacao, #testemunhos {
+    background-color: #ffffff; /* Fundo branco em todas as seções */
+    padding: 20p 0x;
+    margin-top: 40px; /* Ajuste para evitar sobreposição com a imagem */
+    box-sizing: border-box; /* Garante que padding não afete largura */
+    width: 100%; /* Garante que cubra a largura total da tela */
+}
+
+form {
+    width: 100%;
+    max-width: 400px; /* Define uma largura máxima para centralizar o formulário */
+    text-align: left; /* Alinha os textos e labels à esquerda */
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+form input, form button {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #5a88ca;
+    color: white;
+    border: none;
+}
+
+#recomendation {
+    text-align: center;
+    margin: 2rem;
+}
+
+.recomendacao img {
+    width: 100;
+    height: 150px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+#localizacao {
+    text-align: center;
+    margin: 2rem;
+}
+
+#map {
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #ddd;
+}
+
+#testemunhos {
+    margin: 2rem;
+    text-align: center;
+}
+
+.testimonial {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.quarto-item {
+    display: inline-block;
+    margin: 15px;
+    text-align: center;
+}
+
+.quarto-item img {
+    width: 250px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.quarto-item p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}

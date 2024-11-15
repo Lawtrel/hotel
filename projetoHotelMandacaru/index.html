@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel</title>
+    <link rel="stylesheet" href="style/indexStyle.css">
+</head>
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <img class="logo" src="img/logo.png" alt="Logotipo">
+        <h1>Hotel Mandacaru</h1>
+        <p>Bem-vindo ao melhor hotel da cidade!</p>
+        <a href="register.html" class="register-btn" id="registerLink">Registrar</a>
+        <button id="logoutBtn" style="display:none;">Logout</button>
+    </header>
+
+    <!--Imagem estatica-->
+    <div id="imagem-estatica">
+        <img src="img/imgMandacaru2.jpg" alt="Imagem Estática" />
+    </div>
+
+    <!-- Formulário de Reservas -->
+    <section id="reservas">
+        <h2>Faça sua Reserva Online</h2>
+        <form id="bookingForm">
+            <label for="name">Nome Completo:</label>
+            <input type="text" id="name" required>
+
+            <label for="checkin">Data de Check-in:</label>
+            <input type="date" id="checkin" required>
+
+            <label for="checkout">Data de Check-out:</label>
+            <input type="date" id="checkout" required>
+
+            <label for="guests">Número de Hóspedes:</label>
+            <input type="number" id="guests" min="1" required>
+
+            <button type="submit">Reservar Agora</button>
+        </form>
+        <p id="message"></p>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section id="recomendation">
+        <h2>Recomendações</h2>
+        <div class="recomendacao">
+            <img src="img/cultura.jpg" alt="culture">
+            <p>Cultura</p>
+            <img src="img/evento.png" alt="event">
+            <p>Eventos</p>
+        </div>
+    </section>
+
+    <!-- Mapa de Localização -->
+    <section id="localizacao">
+        <h2>Nos Encontre Aqui</h2>
+        <div id="map"></div>
+    </section>
+
+    <!-- Testemunhos e Avaliações -->
+    <section id="testemunhos">
+        <h2>O que nossos hóspedes dizem</h2>
+        <div class="testimonial">
+            <p>"Tive uma estadia maravilhosa! O atendimento foi excelente."</p>
+            <span>- Maria Silva</span>
+        </div>
+        <div class="testimonial">
+            <p>"Um hotel incrível! Voltarei com certeza."</p>
+            <span>- João Pereira</span>
+        </div>
+        <div class="testimonial">
+            <p>"Localização perfeita e ótimas acomodações."</p>
+            <span>- Ana Costa</span>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+            const registerLink = document.getElementById('registerLink');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            if (isLoggedIn) {
+                registerLink.style.display = 'none';
+                logoutBtn.style.display = 'inline-block';
+            } else {
+                registerLink.style.display = 'inline-block';
+                logoutBtn.style.display = 'none';
+            }
+
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('token');
+                localStorage.removeItem('isLoggedIn');
+                window.location.reload();
+            });
+        });
+    </script>
+
+    <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+</body>
+</html>
