@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Salas - Hotel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Quartos Disponíveis</title>
+    <link rel="stylesheet" href="css/roomStyle.css">
 </head>
 <body>
     <header>
         <h1>Quartos Disponíveis</h1>
+        <div id="user-info">
+            <span id="welcome-message"></span>
+            <button id="logout-btn" style="display: none;">Sair</button>
+        </div>
     </header>
-    <main id="room-list">
 
-    </main>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const checkInDate = urlParams.get('checkInDate');
-        const checkOutDate = urlParams.get('checkOutDate');
+    <section id="reservas">
+        <h2>Minhas Reservas</h2>
+        <ul id="user-reservations">
+            <!-- Reservas do usuário serão carregadas aqui -->
+        </ul>
+    </section>
 
-        const response = await fetch(`https://127.0.0.1:5000/api/quartos-disponiveis?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`);
-        const quartos = await response.json();
+    <section id="quartos-disponiveis">
+        <h2>Quartos Disponíveis</h2>
+        <ul id="available-rooms" class="cards-container">
+            <!-- Quartos disponíveis serão carregados aqui -->
+        </ul>
+    </section>
 
-        const roomList = document.getElementById('room-list');
-        if (quartos.length > 0) {
-            quartos.forEach(quarto => {
-                const roomItem = document.createElement('div');
-                roomItem.innerHTML = `<h3>${quarto.nome}</h3><p>${quarto.descricao}</p><p>Preço: R$ ${quarto.preco}</p>`;
-                roomList.appendChild(roomItem);
-            });
-        } else {
-            roomList.innerHTML = '<p>Nenhum quarto disponível para as datas selecionadas.</p>';
-        }
-    });
-    </script>
+    <script src="room.js"></script>
 </body>
 </html>

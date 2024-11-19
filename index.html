@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/indexStyle.css">
 </head>
 <body>
 
@@ -13,12 +13,23 @@
         <img class="logo" src="img/logo.png" alt="Logotipo">
         <h1>Hotel Mandacaru</h1>
         <p>Bem-vindo ao melhor hotel da cidade!</p>
-        <a href="register.html" class="login-btn">Registar</a>
+        <div id ="user-info">
+            <span id="welcome-message"></span>
+            <span id="session-time"></span>
+            <button id="logout-btn" style="display: none;">Sair</button>
+        </div>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Registar</a>
     </header>
+
+    <!--Imagem estatica-->
+    <div id="imagem-estatica">
+        <img src="img/imgMandacaru2.jpg" alt="Imagem Estática" />
+    </div>
 
     <!-- Formulário de Reservas -->
     <section id="reservas">
-        <h2>Faça sua Reserva Online</h2>
+        <h2 id="preform">Faça sua Reserva Online</h2>
         <form id="bookingForm">
             <label for="name">Nome Completo:</label>
             <input type="text" id="name" required>
@@ -71,7 +82,8 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrQIN7U04g0LDJU5fJS1VnKqohqRAf7tw&callback=initMap"></script>
+
 </body>
 </html>
