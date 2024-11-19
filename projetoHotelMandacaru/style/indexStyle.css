@@ -25,6 +25,14 @@ body {
     color: white;
 }
 
+.login-btn {
+    background-color: #20a0af;
+    padding: 10px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+}
+
 header {
     background-color: #95f3fa;
     color: black;
@@ -63,6 +71,7 @@ body {
     background-color: #ffffff;
 }
 
+
 #reservas {
     display: flex;
     justify-content: center;
@@ -79,9 +88,16 @@ body {
     width: 100%; /* Garante que cubra a largura total da tela */
 }
 
+#preform{
+    background: white;
+    padding: 7px;
+    border-radius: 5px;
+
+}
+
 form {
     width: 100%;
-    max-width: 400px; /* Define uma largura máxima para centralizar o formulário */
+    max-width: 300px; /* Define uma largura máxima para centralizar o formulário */
     text-align: left; /* Alinha os textos e labels à esquerda */
     background: white;
     padding: 30px;

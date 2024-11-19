@@ -13,8 +13,8 @@
         <img class="logo" src="img/logo.png" alt="Logotipo">
         <h1>Hotel Mandacaru</h1>
         <p>Bem-vindo ao melhor hotel da cidade!</p>
-        <a href="register.html" class="register-btn" id="registerLink">Registrar</a>
-        <button id="logoutBtn" style="display:none;">Logout</button>
+        <a href="login.html" class="login-btn">Login</a>
+        <a href="register.html" class="register-btn">Registar</a>
     </header>
 
     <!--Imagem estatica-->
@@ -24,7 +24,7 @@
 
     <!-- Formulário de Reservas -->
     <section id="reservas">
-        <h2>Faça sua Reserva Online</h2>
+        <h2 id="preform">Faça sua Reserva Online</h2>
         <form id="bookingForm">
             <label for="name">Nome Completo:</label>
             <input type="text" id="name" required>
@@ -77,30 +77,7 @@
         </div>
     </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-
-            const registerLink = document.getElementById('registerLink');
-            const logoutBtn = document.getElementById('logoutBtn');
-
-            if (isLoggedIn) {
-                registerLink.style.display = 'none';
-                logoutBtn.style.display = 'inline-block';
-            } else {
-                registerLink.style.display = 'inline-block';
-                logoutBtn.style.display = 'none';
-            }
-
-            logoutBtn.addEventListener('click', () => {
-                localStorage.removeItem('token');
-                localStorage.removeItem('isLoggedIn');
-                window.location.reload();
-            });
-        });
-    </script>
-
     <script src="script.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrQIN7U04g0LDJU5fJS1VnKqohqRAf7tw&callback=initMap"></script>
 </body>
 </html>

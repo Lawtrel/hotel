@@ -63,6 +63,12 @@ form {
     cursor: pointer;
 }
 
+.signup-form input {
+    padding: 10px;
+    border: 1.5px solid #00000080;
+    border-radius: 12px;
+}
+
 .forgot-password {
     text-align: center;
     color: #000;
