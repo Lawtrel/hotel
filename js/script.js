@@ -89,7 +89,7 @@ document.getElementById("bookingForm").addEventListener("submit", async function
     const name = document.getElementById("name").value;
     const checkInDate = document.getElementById("checkin").value;
     const checkOutDate = document.getElementById("checkout").value;
-    const guests = parseInt(document.getElementById("guests").value, 10);
+    const guests = document.getElementById("guests").value;
 
     localStorage.setItem("checkInDate", checkInDate);
     localStorage.setItem("checkOutDate", checkOutDate);
@@ -105,15 +105,19 @@ document.getElementById("bookingForm").addEventListener("submit", async function
         alert("A data de check-out deve ser posterior a data de check-in.");
         return;
     }
-    // Dados para enviar para a API
+
+    alert("Informações de reserva salvas. Você será redirecionado para as salas disponíveis.");
+    window.location.href = "room.html";
+
+    /* Dados para enviar para a API
     const reservationData = {
         name,
         checkInDate,
         checkOutDate,
         guests,
-    };
+    };*/
 
-    // Enviando a reserva para a API
+    /* Enviando a reserva para a API
    try {
         const response = await fetch('http://127.0.0.1:5000/api/reservar', {  // Substitua pela URL da API de reservas
             method: 'POST',
@@ -136,8 +140,8 @@ document.getElementById("bookingForm").addEventListener("submit", async function
             console.error('Erro ao enviar reserva:', error);
             document.getElementById("message").textContent = 'Erro ao fazer a reserva. Tente novamente.';
         }
+});*/
 });
-
 
 
 // Google Maps - Mapa de Localização

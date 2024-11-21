@@ -17,7 +17,7 @@
 
     <section id="reservas">
         <h2>Minhas Reservas</h2>
-        <ul id="user-reservations">
+        <ul id="user-reservations" class="cards-container">
             <!-- Reservas do usuário serão carregadas aqui -->
         </ul>
     </section>
@@ -28,7 +28,49 @@
             <!-- Quartos disponíveis serão carregados aqui -->
         </ul>
     </section>
-
-    <script src="room.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', () => {
+        const welcomeMessage = document.getElementById('welcome-message');
+        const logoutBtn = document.getElementById('logout-btn');
+    
+        // Recuperar o token do armazenamento local ou cookies
+        const token = localStorage.getItem('token'); // Substitua conforme necessário
+    
+        if (!token) {
+            welcomeMessage.textContent = 'Você não está logado!';
+            return;
+        }
+    
+        // Fazer requisição para obter os dados do usuário
+        fetch('http://127.0.0.1:5000/api/current-user', { // Substitua pela rota correta
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth-token': token, // Incluindo o token no cabeçalho
+            },
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar os dados do usuário');
+                }
+                return response.json();
+            })
+            .then((userData) => {
+                // Exibir mensagem de boas-vindas com o nome do usuário
+                welcomeMessage.textContent = `Bem-vindo, ${userData.name || 'Usuário'}!`;
+                logoutBtn.style.display = 'inline'; // Exibir o botão de logout
+            })
+            .catch((error) => {
+                console.error('Erro ao buscar usuário:', error);
+                welcomeMessage.textContent = 'Erro ao carregar informações do usuário.';
+            });
+    
+        // Adicionar funcionalidade ao botão de logout
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('token'); // Remover o token do armazenamento local
+            window.location.href = '/login.html'; // Redirecionar para a página de login
+        });
+    });
+    </script>
+    <script src="js/room.js"></script>
 </body>
 </html>

@@ -28,3 +28,10 @@
     font-size: 14px;
     margin: 5px 0;
 }
+
+.room-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
