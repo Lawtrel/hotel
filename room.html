@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="css/roomStyle.css">
 </head>
 <body>
-    <header>
+    <header class="header">
+        <img class="logo" src="img/logo.png" alt="Logotipo">
         <h1>Quartos Disponíveis</h1>
+        <hr>
         <div id="user-info">
             <span id="welcome-message"></span>
             <button id="logout-btn" style="display: none;">Sair</button>
@@ -16,14 +18,14 @@
     </header>
 
     <section id="reservas">
-        <h2>Minhas Reservas</h2>
+        <h2> Minhas Reservas</h2>
         <ul id="user-reservations" class="cards-container">
             <!-- Reservas do usuário serão carregadas aqui -->
         </ul>
     </section>
 
     <section id="quartos-disponiveis">
-        <h2>Quartos Disponíveis</h2>
+        <h2> Quartos Disponíveis</h2>
         <ul id="available-rooms" class="cards-container">
             <!-- Quartos disponíveis serão carregados aqui -->
         </ul>

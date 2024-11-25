@@ -32,6 +32,7 @@
 
                 <button type="submit" class="signup-btn">Cadastrar</button>
             </form>
+            <p id="errorMessage" class="error-message">E-mail inválido.</p>
         </section>
     </main>
      <!--- Script validar formulario --->
@@ -43,11 +44,20 @@
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirm-password").value;
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            if (password !== confirmPassword) {
-                alert("As senhas não são iguais!");
+            if (!regex.test(email)) { 
+                document.getElementById('errorMessage').style.display = 'block'; 
                 return false;
+            } else { 
+                document.getElementById('errorMessage').style.display = 'none'; 
+                
+                if (password !== confirmPassword) {
+                    alert("As senhas não são iguais!");
+                    return false;
+                }
             }
+
             try {
                 const response = await fetch('http://localhost:5000/api/register', {
                     method: 'POST',
