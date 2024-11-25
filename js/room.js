@@ -37,11 +37,11 @@ async function loadUserReservations() {
 
     if (!token) {
         alert("Você precisa estar logado para visualizar suas reservas.");
-        return;
+        window.location.href = 'login.html';
     }
 
     try {
-        const response = await fetch(`${apiUrl}/reservas`, {
+        const response = await fetch(`${apiUrl}/reservas${user._id}`, {
             method: "GET",
             headers: {
                 "x-auth-token": token,
@@ -86,7 +86,7 @@ async function loadUserReservations() {
 
     } catch (error) {
         console.error("Erro na requisição:", error);
-        alert("Erro ao carregar suas reservas.");
+        document.getElementById('user-reservations').innerHTML = '<p>Erro ao buscar reservas.</p>';
     }
 }
 
@@ -121,7 +121,7 @@ async function loadAvailableRooms() {
             card.className = "card";
             card.innerHTML = `
                 <img src="${photoPath}" alt="Foto da ${room.tipoSala}" class="room-photo">
-                <h3>Sala: ${room.nSala}</h3>
+                <h3>Quarto: ${room.nSala}</h3>
                 <p>Tipo: ${room.tipoSala}</p>
                 <p>${room.disponivel ? "Disponível" : "Indisponível"}</p>
                 <button data-room-id="${room._id}" ${!room.disponivel ? 'disabled' : ''}>Reservar</button>
@@ -166,9 +166,15 @@ async function reservarSala(roomId) {
         });
 
         if (response.ok) {
+            const quarto = await Quarto.findOneAndUpdate( 
+                { numero: req.params.numero }, 
+                { disponivel: false }, 
+                { new: true } 
+            );
             alert('Sala reservada com sucesso!');
             loadUserReservations();
             loadAvailableRooms();
+
         } else {
             const errorData = await response.json();
             alert(`Erro: ${errorData.message}`);
