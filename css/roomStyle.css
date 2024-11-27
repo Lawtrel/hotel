@@ -44,15 +44,18 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 200px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s ease;;
 }
 
 .card:hover {
     transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card h3 {
     margin: 10px 0;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .card p {
@@ -65,4 +68,46 @@ body {
     height: auto;
     border-radius: 8px;
     margin-bottom: 12px;
+}
+
+button {
+    background-color: #003366; /* Azul marinho */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #002244; /* Tom mais escuro de azul marinho */
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: none;
+}
+
+#logout-btn {
+    margin-left: 15px;
+}
+
+/* Adicionando borda e sombra para as seções */
+#reservas, #quartos-disponiveis {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 90%; /* Ajuste para responsividade */
+}
+
+/* Adicionando um fundo suave para destacar as seções */
+#reservas {
+    background-color: #f7f7f7;
+}
+
+#quartos-disponiveis {
+    background-color: #ffffff;
 }

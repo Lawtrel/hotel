@@ -19,7 +19,7 @@ async function displayUserInfo() {
 
     try {
         const user = JSON.parse(atob(token.split('.')[1]));
-        welcomeMessage.textContent = `Bem-vindo, ${user.name || 'Usuário'}!`;
+        welcomeMessage.textContent = `Bem-vindo, ${user.name}!`;
         logoutBtn.style.display = 'inline';
 
         logoutBtn.addEventListener('click', () => {
@@ -41,7 +41,7 @@ async function loadUserReservations() {
     }
 
     try {
-        const response = await fetch(`${apiUrl}/reservas${user._id}`, {
+        const response = await fetch(`${apiUrl}/reservas/${user._id}`, {
             method: "GET",
             headers: {
                 "x-auth-token": token,
@@ -60,6 +60,7 @@ async function loadUserReservations() {
 
         if (reservations.length === 0) {
             reservationsList.innerHTML = "<p>Você não tem reservas.</p>";
+            console.log(reservations);
             return;
         }
 
@@ -74,12 +75,12 @@ async function loadUserReservations() {
             const checkOut = new Date(reserva.checkOutDate).toLocaleDateString();
             
             card.innerHTML = `
-                <img src="${photoPath}" alt="Foto da ${reserva.roomId.tipoSala}" class="room-photo">
                 <h3>Sala: ${reserva.roomId.nSala}</h3>
                 <p>Tipo: ${reserva.roomId.tipoSala}</p>
                 <p>Check-in: ${checkIn}</p>
                 <p>Check-out: ${checkOut}</p>
                 <p>Hóspedes: ${reserva.guests}</p>
+                <button onclick="cancelarReserva('${reserva._id}')">Cancelar Reserva</button>
             `;
             reservationsList.appendChild(card);
         });
@@ -89,6 +90,46 @@ async function loadUserReservations() {
         document.getElementById('user-reservations').innerHTML = '<p>Erro ao buscar reservas.</p>';
     }
 }
+
+async function cancelarReserva(reserva) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+        alert("Você precisa estar logado para cancelar uma reserva.");
+        window.location.href = 'login.html';
+    }
+
+    try {
+        const response = await fetch(`${apiUrl}/desfazer-reserva/${reserva._id}`, {
+            method: "POST",
+            headers: {
+                "x-auth-token": token,
+            },
+        });
+
+        if (!response.ok){
+            const quarto = await Quarto.findOneAndUpdate( 
+                { numero: req.params.numero }, 
+                { disponivel: false }, 
+                { new: true } 
+            );
+
+        } else {
+            const errorDetails = await response.json();
+            console.error("Erro ao cancelar a reserva:", errorDetails);
+            alert("Erro ao cancelar a reserva.");
+            return;
+        }
+
+        alert("Reserva cancelada com sucesso!");
+        loadUserReservations();  // Atualizar a lista de reservas
+
+    } catch (error) {
+        console.error("Erro na requisição:", error);
+        alert("Erro ao cancelar a reserva.");
+    }
+}
+
 
 
 async function loadAvailableRooms() {
