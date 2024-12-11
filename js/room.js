@@ -34,20 +34,20 @@ async function displayUserInfo() {
 
 async function loadUserReservations() {
     const token = localStorage.getItem("token");
-
+    
     if (!token) {
         alert("Você precisa estar logado para visualizar suas reservas.");
         window.location.href = 'login.html';
     }
-
+    
     try {
-        const response = await fetch(`${apiUrl}/reservas/${user._id}`, {
+        const response = await fetch(`${apiUrl}/reservas`, {
             method: "GET",
             headers: {
                 "x-auth-token": token,
             },
         });
-
+        
         if (!response.ok) {
             const errorDetails = await response.json();
             console.error("Erro ao carregar as reservas:", errorDetails);
@@ -58,7 +58,7 @@ async function loadUserReservations() {
         const reservations = await response.json();
         const reservationsList = document.getElementById("user-reservations");
 
-        if (reservations.length === 0) {
+        if (reservations.length == 0) {
             reservationsList.innerHTML = "<p>Você não tem reservas.</p>";
             console.log(reservations);
             return;
@@ -75,7 +75,7 @@ async function loadUserReservations() {
             const checkOut = new Date(reserva.checkOutDate).toLocaleDateString();
             
             card.innerHTML = `
-                <h3>Sala: ${reserva.roomId.nSala}</h3>
+                <h3>Quarto: ${reserva.roomId.nSala}</h3>
                 <p>Tipo: ${reserva.roomId.tipoSala}</p>
                 <p>Check-in: ${checkIn}</p>
                 <p>Check-out: ${checkOut}</p>
@@ -87,11 +87,11 @@ async function loadUserReservations() {
 
     } catch (error) {
         console.error("Erro na requisição:", error);
-        document.getElementById('user-reservations').innerHTML = '<p>Erro ao buscar reservas.</p>';
+        document.getElementById('user-reservations').innerHTML = '<p>Erro ao buscar reservas...</p>';
     }
 }
 
-async function cancelarReserva(reserva) {
+async function cancelarReserva() {
     const token = localStorage.getItem("token");
 
     if (!token) {
@@ -107,7 +107,7 @@ async function cancelarReserva(reserva) {
             },
         });
 
-        if (!response.ok){
+        if (response.ok){
             const quarto = await Quarto.findOneAndUpdate( 
                 { numero: req.params.numero }, 
                 { disponivel: false }, 
@@ -207,11 +207,6 @@ async function reservarSala(roomId) {
         });
 
         if (response.ok) {
-            const quarto = await Quarto.findOneAndUpdate( 
-                { numero: req.params.numero }, 
-                { disponivel: false }, 
-                { new: true } 
-            );
             alert('Sala reservada com sucesso!');
             loadUserReservations();
             loadAvailableRooms();
@@ -225,3 +220,4 @@ async function reservarSala(roomId) {
         alert('Erro ao reservar a sala. Tente novamente.');
     }
 }
+
